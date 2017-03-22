@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="global.sesoc.lipcoding.dao.VoiceMapper">
+
+	<!-- 회원 코드 저장 -->
+	<insert id="insert" parameterType="Voice">
+		insert into
+			voicetest
+		(
+			command
+			, code
+		)
+		values
+		(
+			#{command}
+			,#{code}	
+		)
+	</insert>
+	
+	<!-- 회원 코드 불러오기 -->
+	<select id="userCode" parameterType="string" resultType="string">
+		select 
+			code 
+		from 
+			voicetest 
+		where
+			command = #{command}
+	</select>
+	
+</mapper>
