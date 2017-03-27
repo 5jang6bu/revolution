@@ -19,19 +19,6 @@
 		background-color: rgba(240,95,64,0.2);
 		border: none;
 	}
-	#divExp{
-		width: 15%;
-		height: 600px;
-		float: left;
-		background-color: rgba(255,255,255,0.2);
-		border: none;
-	}
-	#divSpace{
-		width: 77%;
-		height: 600px;
-		float: left;
-		border: none;
-	}
 
 	.nonono{
 		width: 100%;

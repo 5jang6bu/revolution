@@ -77,10 +77,7 @@
 			
 			<div class="userSpace">
 				<%@ include file="create_menu.jsp" %>
-				<%@ include file="create_folder.jsp" %>
-				<div id="divSpace">
-					<%@ include file="create_code.jsp" %>
-				</div>
+				<%@ include file="create_code.jsp" %>
 			</div>
 		</div>
 	</nav>
