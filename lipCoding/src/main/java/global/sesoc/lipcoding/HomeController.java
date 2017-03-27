@@ -18,7 +18,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return "home";
+		return "index";
 	}
 	
 	@RequestMapping(value="create", method=RequestMethod.GET)
@@ -35,4 +35,9 @@ public class HomeController {
 	public String open(){
 		return "open";
 	}
+	
+	/*@RequestMapping(value="index", method=RequestMethod.GET)
+	public String index(){
+		return "index";
+	}*/
 }

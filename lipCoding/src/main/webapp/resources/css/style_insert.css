@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+header {
+	background-image: url('../bootstrap/img/insertHeader.jpg');
+	text-align: center;
+	color: black;
+}
+
+nav {
+	text-align: center;
+}
+
+.userCommand {
+	float: letf;
+	margin: auto;
+	width: 450px;
+	height: 250px;
+	background-color: rgba(240, 95, 64, 0.3);
+	border-radius: 20px;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.tName {
+	color: white;
+}
+
+table {
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+
+#code {
+	width: 300px;
+	height: 100px;
+	outline: none;
+	border: none;
+	resize: none;
+}
+
+#insertBt {
+	outline: none;
+	background-color: white;
+	border: none;
+}
+
+#command {
+	width: 300px;
+	outline: none;
+}
+
+#listBt{
+	opacity: 0.6;
+	width:50px;
+	height:50px;
+}
+
+.header-content{
+	padding-left: 100px;
+}
+
+.header-left {
+	float: left;
+	width: 50%;
+}
+
+.header-right {
+	float: right;
+	width: 50%;
+	height: 500px;
+	text-align: center;
+}
+
+.header-root {
+	margin: auto;
+}
+
+.listDiv{
+	overflow:auto;
+	display: none; 
+	float: right; 
+	width: 600px; 
+	height: 600px; 
+	background-color: rgba(0,0,0,0.7); 
+	margin-top: 83px; 
+	margin-right: 7px;
+	color: white;
+}

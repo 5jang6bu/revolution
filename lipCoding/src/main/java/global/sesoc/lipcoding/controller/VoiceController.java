@@ -1,5 +1,7 @@
 package global.sesoc.lipcoding.controller;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +32,13 @@ public class VoiceController {
 	public void insert(Voice voice){
 		logger.debug(voice.toString());
 		dao.insert(voice);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="getList", method=RequestMethod.GET)
+	public ArrayList<Voice> getList(){
+		ArrayList<Voice> commandList = dao.getList();
+		logger.debug(commandList.toString());
+		return commandList;
 	}
 }

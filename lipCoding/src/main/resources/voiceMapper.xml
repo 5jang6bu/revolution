@@ -31,4 +31,12 @@
 			command = #{command}
 	</select>
 	
+	<!-- 회원 코드 리스트 불러오기 -->
+	<select id="getList" resultType="Voice">
+		select 
+			*
+		from
+			voicetest
+	</select>
+	
 </mapper>
