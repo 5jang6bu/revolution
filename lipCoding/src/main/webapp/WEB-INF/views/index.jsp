@@ -30,6 +30,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style>
+    	#servicesMenu{
+    		
+    	}
+    </style>
 
 </head>
 
@@ -91,54 +97,47 @@
         </div>
     </section>
 
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Service</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <a href="create"><i class="fa fa-4x fa-diamond text-primary sr-icons"></i></a>
-                        <h3>Create New Project</h3>
-                        <p class="text-muted">We provide various functions</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <a href="insert"><i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i></a>
-                        <h3>Insert Command</h3>
-                        <p class="text-muted">Insert your own command</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <a href="open"><i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i></a>
-                        <h3>Open</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-               <!--  <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
+	<section id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">Services</h2>
+					<hr class="primary">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="service-box">
+						<a href="create"><i	class="fa fa-4x fa-diamond text-primary sr-icons"></i></a>
+						<h3>Create New Project</h3>
+						<p class="text-muted">We provide various functions</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="service-box">
+						<a href="insert"><i	class="fa fa-4x fa-paper-plane text-primary sr-icons"></i></a>
+						<h3>Insert Command</h3>
+						<p class="text-muted">Insert your own command</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="service-box">
+						<a href="open"><i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i></a>
+						<h3>Open</h3>
+						<p class="text-muted">We update dependencies to keep things fresh.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section class="no-padding" id="portfolio">
+	<section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter popup-gallery">
                 <div class="col-lg-4 col-sm-6">
-                    <a href="resources/bootstrap/img/portfolio/fullsize/1.jpg" class="portfolio-box">
+                    <a class="portfolio-box">
                         <img src="resources/bootstrap/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -153,7 +152,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="resources/bootstrap/img/portfolio/fullsize/2.jpg" class="portfolio-box">
+                    <a class="portfolio-box">
                         <img src="resources/bootstrap/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -168,7 +167,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="resources/bootstrap/img/portfolio/fullsize/3.jpg" class="portfolio-box">
+                    <a class="portfolio-box">
                         <img src="resources/bootstrap/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -183,7 +182,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="resources/bootstrap/img/portfolio/fullsize/4.jpg" class="portfolio-box">
+                    <a class="portfolio-box">
                         <img src="resources/bootstrap/img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -198,7 +197,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="resources/bootstrap/img/portfolio/fullsize/5.jpg" class="portfolio-box">
+                    <a class="portfolio-box">
                         <img src="resources/bootstrap/img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -213,7 +212,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="resources/bootstrap/img/portfolio/fullsize/6.jpg" class="portfolio-box">
+                    <a class="portfolio-box">
                         <img src="resources/bootstrap/img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">

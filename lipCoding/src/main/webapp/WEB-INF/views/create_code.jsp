@@ -101,17 +101,14 @@
 </head>
 <body>
 
-
-
-		<div id="editor" contenteditable="true">public class Test {
-		public static void main(String[] args) {
-		}
+	<div id="editor" contenteditable="true">public class Test {
+	public static void main(String[] args) {
+	}
 	}</div>
 	 <div id="diagram">
  
  	</div>
 
-	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/js/ext-language_tools.js"></script>
 	
