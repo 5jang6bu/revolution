@@ -80,7 +80,6 @@
 				<%@ include file="create_folder.jsp" %>
 				<div id="divSpace">
 					<%@ include file="create_code.jsp" %>
-					<%@ include file="create_diagram.jsp" %>
 				</div>
 			</div>
 		</div>

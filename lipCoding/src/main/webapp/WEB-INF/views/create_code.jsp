@@ -18,6 +18,12 @@
     	width: 570px;
 		height: 600px;
     }
+    #diagram{
+		float: right;
+		width: 612px;
+		height: 600px;
+		background-color: rgba(0,0,0,0.2);
+	}
   </style>
 </head>
 <script>
@@ -101,6 +107,9 @@
 		public static void main(String[] args) {
 		}
 	}</div>
+	 <div id="diagram">
+ 
+ 	</div>
 
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
