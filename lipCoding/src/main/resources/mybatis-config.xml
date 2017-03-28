@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="global.sesoc.lipcoding.vo.Voice" alias="Voice" />
+		<typeAlias type="global.sesoc.lipcoding.vo.User" alias="User" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="voiceMapper.xml" />
+		<mapper resource="UserMapper.xml" />
 	</mappers>
 </configuration>
