@@ -54,8 +54,6 @@ function formCheck(){
 	}else if(!idConfirm){
 		return false;
 	}
-	
-	alert('가입이 완료되었습니다');
 }
 
 //특수문자 체크

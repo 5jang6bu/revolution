@@ -1,10 +1,7 @@
 package global.sesoc.lipcoding.controller;
 
-import java.util.Random;
-
-import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 /*import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;*/
@@ -18,24 +15,27 @@ import global.sesoc.lipcoding.dao.UserDAO;
 import global.sesoc.lipcoding.vo.User;
 
 @Controller
-@RequestMapping("User")
+//@RequestMapping("User")
 public class UserController {
 	/*@Autowired
 	private JavaMailSender mailSender;*/
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	UserDAO dao;
 	
 	//회원가입창 열기
-	@RequestMapping(value="joinForm", method=RequestMethod.GET)
+	/*@RequestMapping(value="joinForm", method=RequestMethod.GET)
 	public String joinForm(Model model){
 		return "User/joinForm";				
-	}
+	}*/
 	
 	//회원가입 처리
 	@RequestMapping(value="joinForm", method=RequestMethod.POST)
 	public String join(User user){
-				
+		logger.debug(user.toString());
+		
 		int result = 0;		
 		
 		try {
@@ -67,7 +67,7 @@ public class UserController {
 		}
 
 		if (result == 0) {			
-			return "User/joinForm";
+			//return "User/joinForm";
 		}		
 		return "redirect:/";
 	}
@@ -78,7 +78,7 @@ public class UserController {
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	public int idCheck(String userId) {
 		int result = 0;
-		
+		logger.debug(userId);
 		User user = dao.idCheck(userId);		
 		if(user.getUserId() != null){
 			result = 1;
@@ -123,6 +123,7 @@ public class UserController {
 			return 1;
 		}
 	}
+	
 }
 
 

@@ -7,8 +7,12 @@
 <script src="resources/js/jquery-3.1.1.min.js"></script>
 <script src="resources/dia2/go.js"></script>
 <script src="resources/dia2/goSamples.js"></script>
-<link rel="stylesheet" href="resources/dia2/DataInspector.css" />
 <script src="resources/dia2/DataInspector.js"></script>
+
+<!-- CSS -->
+<link href="resources/css/layout.css" rel="stylesheet">
+<link href="resources/css/style_createCode.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/dia2/DataInspector.css" />
 
 <script>
 //다이어그램
@@ -367,48 +371,13 @@ function init() {
   function load() {
     myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
   }
-</script>
 
-<!-- layout CSS -->
-<link href="resources/css/layout.css" rel="stylesheet">
-  <style type="text/css" media="screen">
-    body {
-        overflow: hidden;
-    }
-	#divExp{
-		float: left;
-		width: 15%;
-		height: 600px;
-		float: left;
-		background-color: rgba(255,255,255,0.2);
-		border: none;
-	}
-    #divSpace{
-		width: 77%;
-		height: 600px;
-		float: left;
-		border: none;
-		outline: none;
-	}
-    #editor{
-    	float: left;
-    	width: 570px;
-		height: 600px;
-		opacity: 0.9;
-    }
-    #diagram{
-		float: right;
-		width: 612px;
-		height: 600px;
-		background-color: rgba(0,0,0,0.5);
-		outline: none;
-	}
-  </style>
-<script>
 	$(document).ready(function(){
 		voice();
 	});
+</script>
 
+<script>
 	function voice() {
 		var final_transcript = '';
 		var recognizing = false;
@@ -482,20 +451,21 @@ function init() {
 	<div id="divExp">
 
 	</div>
-	<div id="divSpace">
-	<div id="editor" contentEditable="true" ><textarea></textarea>
-	</div>
-		<div id="diagram">
-	 		<body onload="init()">
-			<div id="sample">
-	 			<div id="myDiagramDiv" style="/* background-color: #696969; */ border: solid 1px black; height: 600px; outline:none"></div>
-				<div>
-	  				<textarea id="mySavedModel" style="width:100%;height:250px;display:none" ></textarea>
-	 			</div>
-			</div>
-	 	</div>
- 	</div>
 	
+	
+	<div id="editor" contentEditable="true" ></div>
+	
+	
+	<div id="diagram">
+	 	<body onload="init()">
+			<div id="sample">
+	 			<div id="myDiagramDiv" style="/* background-color: #696969; */ border: solid 1px black; height: 600px; outline:none">
+	 			</div>
+			<div>
+	  			<textarea id="mySavedModel" style="width:100%;height:250px;display:none" ></textarea>
+	 		</div>
+		</div>
+ 	</div>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/js/ext-language_tools.js"></script>

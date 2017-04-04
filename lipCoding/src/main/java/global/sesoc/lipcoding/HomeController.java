@@ -26,6 +26,11 @@ public class HomeController {
 		return "create";
 	}
 	
+	@RequestMapping(value="login", method=RequestMethod.GET)
+	public String login(){
+		return "loginUI";
+	}
+	
 	@RequestMapping(value="insert", method=RequestMethod.GET)
 	public String insert(){
 		return "insert";
