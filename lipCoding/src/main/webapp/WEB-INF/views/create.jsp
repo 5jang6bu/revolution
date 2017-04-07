@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <script src="resources/js/jquery-3.1.1.min.js"></script>
 <script src="resources/dia2/go.js"></script>
@@ -36,20 +37,58 @@
 <link href="resources/css/style_createCode.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/dia2/DataInspector.css" />
 
+<!-- jTab css -->
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link href="resources/css/style_tab.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+	#tabs{
+    	float: left;
+    	width: 37%;
+		height: 600px;
+    }
+    
+    .editor{
+    	float: left;
+    	width: 100%;
+		height: 560px;
+		position: relative;
+		z-index: 98;
+    }
+</style>
+
 <script>
-	$(document).ready(function() {
-		//settingName();
-		$("#editor").on('keyup',call1);
+ 	$(document).ready(function() {
+		settingName();
+		//$("#tabs*").on('keyup',call1);
 		voice();
 	});
-
+	
+	$( function() {
+	    $( "#tabs" ).tabs();
+	});
+	
+	var projectName;
 	function settingName() {
-		var name = prompt('생성할 프로젝트 이름을 설정하세요');
-		//console.log(name);
+		projectName = prompt('생성할 프로젝트 이름을 설정하세요');
+		if(projectName.length != 0){
+			$.ajax({
+				url: 'startProject',
+				type: 'POST',
+				data: {projectName: projectName},
+				error: function(){alert('dd');}
+			});
+		}
 	}
-
+	
+	function calll(className){
+		$("#editor"+className).on('keyup',call1);
+	}
+	
 	function call1(){
-		var text = $("#editor").text();
+		var text = $("#editor"+className).text();
 		text=text.slice(0,-50);
 		text=text.replace(/[0-9]/g, "")
 		console.log(text);
@@ -110,57 +149,57 @@
 	              }),
 	          "undoManager.isEnabled": true // enable undo & redo
 	        });
-	
-	    // when the document is modified, add a "*" to the title and enable the "Save" button
-	    myDiagram.addDiagramListener("Modified", function(e) {
-	      var button = document.getElementById("SaveButton");
-	      if (button) button.disabled = !myDiagram.isModified;
-	      var idx = document.title.indexOf("*");
-	      if (myDiagram.isModified) {
-	        if (idx < 0) document.title += "*";
-	      } else {
-	        if (idx >= 0) document.title = document.title.substr(0, idx);
-	      }
-	    });
-	
-	    // manage boss info manually when a node or link is deleted from the diagram
-	    myDiagram.addDiagramListener("SelectionDeleting", function(e) {
-	      var part = e.subject.first(); // e.subject is the myDiagram.selection collection,
-	                                    // so we'll get the first since we know we only have one selection
-	      myDiagram.startTransaction("clear boss");
-	      if (part instanceof go.Node) {
-	        var it = part.findTreeChildrenNodes(); // find all child nodes
-	        while(it.next()) { // now iterate through them and clear out the boss information
-	          var child = it.value;
-	          var bossText = child.findObject("boss"); // since the boss TextBlock is named, we can access it by name
-	          if (bossText === null) return;
-	          bossText.text = "";
-	        }
-	      } else if (part instanceof go.Link) {
-	        var child = part.toNode;
-	        var bossText = child.findObject("boss"); // since the boss TextBlock is named, we can access it by name
-	        if (bossText === null) return;
-	        bossText.text = "";
-	      }
-	      myDiagram.commitTransaction("clear boss");
-	    });
-	
-	    var levelColors = ["#AC193D", "#2672EC", "#8C0095", "#5133AB",
-	                       "#008299", "#D24726", "#008A00", "#094AB2"];
-	
-	    // override TreeLayout.commitNodes to also modify the background brush based on the tree depth level
-	    myDiagram.layout.commitNodes = function() {
-	      go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);  // do the standard behavior
-	      // then go through all of the vertexes and set their corresponding node's Shape.fill
-	      // to a brush dependent on the TreeVertex.level value
-	      myDiagram.layout.network.vertexes.each(function(v) {
-	        if (v.node) {
-	          var level = v.level % (levelColors.length);
-	          var color = levelColors[level];
-	          var shape = v.node.findObject("SHAPE");
-	          if (shape) shape.fill = $(go.Brush, "Linear", { 0: color, 1: go.Brush.lightenBy(color, 0.05), start: go.Spot.Left, end: go.Spot.Right });
-	        }
-	      });
+		
+		    // when the document is modified, add a "*" to the title and enable the "Save" button
+		    myDiagram.addDiagramListener("Modified", function(e) {
+		      var button = document.getElementById("SaveButton");
+		      if (button) button.disabled = !myDiagram.isModified;
+		      var idx = document.title.indexOf("*");
+		      if (myDiagram.isModified) {
+		        if (idx < 0) document.title += "*";
+		      } else {
+		        if (idx >= 0) document.title = document.title.substr(0, idx);
+		      }
+		    });
+		
+		    // manage boss info manually when a node or link is deleted from the diagram
+		    myDiagram.addDiagramListener("SelectionDeleting", function(e) {
+		      var part = e.subject.first(); // e.subject is the myDiagram.selection collection,
+		                                    // so we'll get the first since we know we only have one selection
+		      myDiagram.startTransaction("clear boss");
+		      if (part instanceof go.Node) {
+		        var it = part.findTreeChildrenNodes(); // find all child nodes
+		        while(it.next()) { // now iterate through them and clear out the boss information
+		          var child = it.value;
+		          var bossText = child.findObject("boss"); // since the boss TextBlock is named, we can access it by name
+		          if (bossText === null) return;
+		          bossText.text = "";
+		        }
+		      } else if (part instanceof go.Link) {
+		        var child = part.toNode;
+		        var bossText = child.findObject("boss"); // since the boss TextBlock is named, we can access it by name
+		        if (bossText === null) return;
+		        bossText.text = "";
+		      }
+		      myDiagram.commitTransaction("clear boss");
+		    });
+		
+		    var levelColors = ["#AC193D", "#2672EC", "#8C0095", "#5133AB",
+		                       "#008299", "#D24726", "#008A00", "#094AB2"];
+		
+		    // override TreeLayout.commitNodes to also modify the background brush based on the tree depth level
+		    myDiagram.layout.commitNodes = function() {
+		      go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);  // do the standard behavior
+		      // then go through all of the vertexes and set their corresponding node's Shape.fill
+		      // to a brush dependent on the TreeVertex.level value
+		      myDiagram.layout.network.vertexes.each(function(v) {
+		        if (v.node) {
+		          var level = v.level % (levelColors.length);
+		          var color = levelColors[level];
+		          var shape = v.node.findObject("SHAPE");
+		          if (shape) shape.fill = $(go.Brush, "Linear", { 0: color, 1: go.Brush.lightenBy(color, 0.05), start: go.Spot.Left, end: go.Spot.Right });
+		        }
+		     });
 	    };
 
     // This function is used to find a suitable ID when modifying/creating nodes.
@@ -400,93 +439,117 @@
 	    myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
 	  }
 	
-		function voice() {
-			var final_transcript = '';
-			var recognizing = false;
-			var ignore_onend;
-			var recognition = new webkitSpeechRecognition();
-			recognition.continuous = true;
-			recognition.interimResults = true;
-	
-			if (recognizing) {
-				recognition.stop();
-				alert('음성인식 종료');
+	function voice() {
+		var final_transcript = '';
+		var recognizing = false;
+		var ignore_onend;
+		var recognition = new webkitSpeechRecognition();
+		recognition.continuous = true;
+		recognition.interimResults = true;
+
+		if (recognizing) {
+			recognition.stop();
+			alert('음성인식 종료');
+			return;
+		} else {
+			final_transcript = '';
+			recognition.lang = 'en-US';
+			recognition.start();
+			ignore_onend = false;
+			console.log('음성인식 시작');
+		}
+
+		recognition.onend = function() {
+			recognizing = false;
+			if (ignore_onend) {
 				return;
-			} else {
-				final_transcript = '';
-				recognition.lang = 'en-US';
-				recognition.start();
-				ignore_onend = false;
-				console.log('음성인식 시작');
 			}
-	
-			recognition.onend = function() {
-				recognizing = false;
-				if (ignore_onend) {
-					return;
-				}
-				if (!final_transcript) {
-					console.log('스타트하세옹');
-					return;
-				}
-				console.log('');
-				recognition.lang = 'en-US';
-				recognition.start();
-				ignore_onend = false;
-				console.log('음성인식 시작');
-			};
-	
-			recognition.onresult = function(event) {
-				var interim_transcript = '';
-				for (var i = event.resultIndex; i < event.results.length; ++i) {
-						var command = event.results[i][0].transcript;
-					if (event.results[i].isFinal) {
-						var dbComm = command.toLowerCase();
-						final_transcript += dbComm;
-						if (final_transcript.match('hello')) {
-							console.log('서버 연결 준비');
-							var array = dbComm.split(' ');
-							for (var j = 0; j < array.length; j++) {
-								console.log(array[j]);
-								$.ajax({
-									url : 'userCode',
-									type : 'POST',
-									data : {
-										command : array[j]
-									},
-									dataType : 'text',
-									success : result,
-									error : function(e) {
-										alert(JSON.stringify(e));
-									}
-								});
-							}
-						} else
-							console.log('매치안됨');
-					}
-				}
-			};
-		}
-		
-		function iconClick(){
-			var className = prompt('클래스 명');
-			if(className.length != 0){
-				$.ajax({
-					url: 'create',
-					type: 'POST',
-					data: {
-						className: className
-					},
-					dataType: 'text',
-					success: createTab,
-					error : function(e) {
-						alert(JSON.stringify(e));
-					}
-				});
+			if (!final_transcript) {
+				console.log('스타트하세옹');
+				return;
 			}
-		}
-		
-		
+			console.log('');
+			recognition.lang = 'en-US';
+			recognition.start();
+			ignore_onend = false;
+			console.log('음성인식 시작');
+		};
+
+		recognition.onresult = function(event) {
+			var interim_transcript = '';
+			for (var i = event.resultIndex; i < event.results.length; ++i) {
+					var command = event.results[i][0].transcript;
+				if (event.results[i].isFinal) {
+					var dbComm = command.toLowerCase();
+					final_transcript += dbComm;
+					if (final_transcript.match('hello')) {
+						console.log('서버 연결 준비');
+						var array = dbComm.split(' ');
+						for (var j = 0; j < array.length; j++) {
+							console.log(array[j]);
+							$.ajax({
+								url : 'userCode',
+								type : 'POST',
+								data : {
+									command : array[j]
+								},
+								dataType : 'text',
+								success : result,
+								error : function(e) {
+									alert(JSON.stringify(e));
+								}
+							});
+						}
+					} else
+						console.log('매치안됨');
+				}
+			}
+		};
+	}
+	
+	var className;
+	function iconClick(){
+		className = prompt('클래스명을 입력하세요');
+		createTab(className);
+	}
+	
+	var packageName;
+	function newProject(){
+		packageName = prompt('패키지명을 입력하세요');
+	}
+	
+	function saveClass(){
+		//alert(className+packageName+editor.getValue());
+		$.ajax({
+			url: 'save',
+			type: 'POST',
+			data: {
+				className: className,
+				packageName: packageName,
+				text: editor.getValue(),
+				projectName: projectName
+			},
+			error: function(){alert('dddd');}
+		});
+	}
+	
+	function compile(){
+		$.ajax({
+			url: 'run',
+			type: 'POST',
+			data: {
+				className: className,
+				packageName: packageName,
+				projectName: projectName
+			},
+			success: compileResult,
+			error: function(){alert('dddd');}
+		});
+	}
+	
+	function compileResult(){
+		$('#diagram').html('<div id="compileDiv"></div>');
+	}
 </script>
 </head>
 <body>
@@ -520,32 +583,34 @@
 			<div class="userSpace">
 				<div id="divSide" class="sideMenu">
 					<div class="innerSpace">
-						<a href="javascript:iconClick()"><img src="resources/img/plus32.png" id="new" class="sideIcon"></a>
+						<a href="javascript:newProject()"><img src="resources/img/package2.png" id="" class="sideIcon"></a>
+					</div>
+					<div class="innerSpace">
+						<a href="javascript:iconClick()"><img src="resources/img/class.png" id="new" class="sideIcon" width="32px" height="32px"></a>
+					</div>
+					<div class="innerSpace">
+						<a href="javascript:saveClass()"><img src="resources/img/save.png" id="" class="sideIcon"></a>
+					</div>
+					<div class="innerSpace">
+						<a href="javascript:compile()"><img src="resources/img/run.png" id="" class="sideIcon"></a>
 					</div>
 				</div>
 				
-				<form id="createClass" action="create" method="POST">
-					<input type="hidden" vlaue="">
+				<div id="divExp">
+					
+				</div>
+
+				<form>
+					<div id="tabs">
+						<ul>
+						</ul>
+					</div>
 				</form>
 				
-				<div id="divExp">
-
-				</div>
-				
-				
-				
-
-					<div id="editor" contentEditable="true"></div>
-
-				
-				
-				
-				
-				
 				<div id="diagram">
-				 	<body onload="init()">
+				<body onload="init()">
 						<div id="sample">
-				 			<div id="myDiagramDiv" style="/* background-color: #696969; */ border: solid 1px black; height: 600px; outline:none">
+				 			<div id="myDiagramDiv" style="border: none; height: 600px; outline:none">
 				 			</div>
 						<div>
 				  			<textarea id="mySavedModel" style="width:100%;height:250px;display:none" ></textarea>
@@ -557,27 +622,40 @@
 				<script src="resources/js/ext-language_tools.js"></script>
 				
 				<script>
-			    // trigger extension
-			    ace.require("ace/ext/language_tools");
-			    var editor = ace.edit("editor");
-			    editor.session.setMode("ace/mode/java");
-			    editor.setTheme("ace/theme/monokai");
-			    // 자동완성
-			    editor.setOptions({
-			        enableBasicAutocompletion: true,
-			        enableSnippets: true,
-			        enableLiveAutocompletion: false
-			    });
-			    
+				var editor;
+				//var className;
+				function createTab(className) {
+					var cc = $("#tabs").tabs();
+					var ul = cc.find("ul");
+
+					$("<li class='ui-tabs-panel' ><a href='#editor" + className + "'>" +className +"</a></li>").appendTo(ul);
+					$("<div class='editor' id='" + "editor" + className + "'> package " + packageName + ";<br> public class " + className +  "{<br>}</div>" ).appendTo(cc);		  
+						
+					cc.tabs("refresh");
+					calll(className);
+					
+					// trigger extension
+				    ace.require("ace/ext/language_tools");
+				    editor = ace.edit("editor"+className);
+				    editor.session.setMode("ace/mode/java");
+				    
+				    editor.setTheme("ace/theme/monokai");
+				    // 자동완성
+				    editor.setOptions({
+				        enableBasicAutocompletion: true,
+				        enableSnippets: true,
+				        enableLiveAutocompletion: false
+				    });
+				}
+				
 			    function result(ob) {
 					editor.insert(ob);
 			    }
 			    
-			    
 				</script>
-						</div>
-					</div>
-				</nav>
+			</div>
+		</div>
+	</nav>
 	
 	<!-- login modal -->
 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

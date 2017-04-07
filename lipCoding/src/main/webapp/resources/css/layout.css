@@ -28,11 +28,11 @@
 	}
 	
 	.innerSpace{
-		width: 80%;
+		width: 100%;
 		float: left;
-		height: 100px;
+		height: 72px;
 		text-align: center;
-		padding-top: 50px;
+		padding-top: 20px;
 	}
 	
 	.sideIcon{

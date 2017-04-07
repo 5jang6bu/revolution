@@ -14,24 +14,20 @@
 		position: relative;
 		z-index: 99;
 	}
-
-    #editor{
+	
+	#tabs{
     	float: left;
     	width: 37%;
 		height: 600px;
-		opacity: 0.9;
+    }
+    
+    .editor{
+    	float: left;
+    	width: 100%;
+		height: 560px;
 		position: relative;
 		z-index: 98;
     }
-    
-/*     .container{
-    	float: left;
-    	width: 37%;
-		height: 600px;
-		opacity: 0.9;
-		position: relative;
-		z-index: 98;
-    } */
     
     #diagram{
 		float: right;
@@ -41,6 +37,14 @@
 		outline: none;
 		position: relative;
 		z-index: 97;
+	}
+	
+	#compileDiv{
+		float: inherit;
+		width: 90%;
+		height: 580px;
+		background-color: rgba(255,255,255,0.2);
+		outline: none;
 	}
 	
 	#login-modal {
