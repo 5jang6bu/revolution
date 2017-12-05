@@ -22,7 +22,7 @@ public class JavaFile {
 	public String getClassName() {
 		return className;
 	}
-
+//gitTest
 	public void setClassName(String className) {
 		this.className = className;
 	}
